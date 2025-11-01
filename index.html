@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="gameBox">
+        <h1 id="gameHeader">To-Do List</h1>
+        <div id="addTaskBox">
+            <input type="text" placeholder="Введите задачу" id="taskValue">
+            <button id="addTaskButton">Добавить задачу</button>
+        </div>
+        <div id="tasks"></div>
+        <div id="filters">
+            <button id="showAllTasks" class="filter">Все задачи</button>
+            <button id="showResolvedTasks" class="filter">Выполненные задачи</button>
+            <button id="showUnresolvedTasks" class="filter">Невыполненные задачи</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
