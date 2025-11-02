@@ -40,6 +40,8 @@ body{
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    max-height: 500px;
+    height: 100%;
 }
 
 #gameBox #addTaskBox{
