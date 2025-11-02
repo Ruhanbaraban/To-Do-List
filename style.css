@@ -85,6 +85,7 @@ body{
     flex-direction: column;
     overflow-y: auto;
     max-height: 300px;
+    overflow-x: hidden;
 }
 
 #gameBox #tasks:empty{
@@ -158,4 +159,14 @@ body{
 
 #gameBox #filters .filter:hover{
     transform: translateY(-5px);
+}
+
+@media screen and (max-width: 375px) {
+    #gameBox #tasks{
+        max-height: 90px;
+    }
+
+    #gameBox #filters{
+        gap: 5px;
+    }
 }
