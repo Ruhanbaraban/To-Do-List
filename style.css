@@ -112,6 +112,11 @@ body{
     align-items: center;
 }
 
+#gameBox #tasks .task .leftPartOfTask .taskValue{
+    max-width: 60px;
+    overflow: scroll;
+}
+
 #gameBox #tasks .task.resolved .leftPartOfTask .taskValue{
     color: gray;
     text-decoration: line-through;
