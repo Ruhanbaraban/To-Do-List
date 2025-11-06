@@ -112,11 +112,6 @@ body{
     align-items: center;
 }
 
-#gameBox #tasks .task .leftPartOfTask .taskValue{
-    max-width: 60px;
-    overflow: scroll;
-}
-
 #gameBox #tasks .task.resolved .leftPartOfTask .taskValue{
     color: gray;
     text-decoration: line-through;
@@ -131,7 +126,6 @@ body{
 #gameBox #tasks .task .rightPartOfTask .timer{
     width: 30px;
     height: 30px;
-    display: none;
 }
 
 #gameBox #tasks .task .rightPartOfTask .deleteTask{
@@ -164,6 +158,53 @@ body{
 
 #gameBox #filters .filter:hover{
     transform: translateY(-5px);
+}
+
+#forActions{
+    display: flex;
+    padding: 30px;
+    max-width: 200px;
+    width: 100%;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 20px;
+    gap: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+}
+
+#forActions:empty{
+    display: none;
+}
+
+#forActions #timeForTimer{
+    background-color: rgba(128, 128, 128, .2);
+    outline: none;
+    border: none;
+    padding: 10px 10px 10px 0;
+    border-radius: 10px;
+}
+
+#forActions #submitTimer{
+    padding: 5px;
+    border-radius: 7px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    outline: none;
+}
+
+#forActions #submitTimer:hover{
+    transform: scale(1.1);
+}
+
+#forActions #closeBoxBtn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: large;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 375px) {
