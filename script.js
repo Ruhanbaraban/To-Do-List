@@ -5,10 +5,8 @@ const addTaskButton = document.getElementById("addTaskButton");
 const showAllTasks = document.getElementById("showAllTasks");
 const showResolvedTasks = document.getElementById("showResolvedTasks");
 const showUnresolvedTasks = document.getElementById("showUnresolvedTasks");
-const boxForActions = document.getElementById("forActions");
 
 const url = "https://jsonplaceholder.typicode.com/todos";
-let timer = null;
 
 const savedTasks = localStorage.getItem("tasks");
 if(!savedTasks){
@@ -83,9 +81,8 @@ function loadTaskFromServer(){
                 </div>
                 `;
                 tasks.appendChild(task);
-
-                saveTasksToLocalStorage();
             }
+            saveTasksToLocalStorage();
         })
         .catch((err) => {
             alert(err)
@@ -93,10 +90,24 @@ function loadTaskFromServer(){
 }
 
 addTaskButton.addEventListener("click", function addTask(){
+    let taskExists = false;
+
     if(taskValue.value.trim().length === 0){
         alert("Введите задачу!");
         return;
+    } 
+
+    tasks.querySelectorAll(".task").forEach((task) => {
+        if(task.querySelector(".taskValue").innerHTML === taskValue.value){
+            taskExists = true;
+        }
+    })
+
+    if(taskExists){
+        alert("Нельзя повторятся!");
+        return;
     }
+
     const task = document.createElement("div");
     task.className = "task";
     task.innerHTML = `
@@ -132,7 +143,6 @@ tasks.addEventListener("change", (e) => {
 tasks.addEventListener("click", (e) => {
     if(e.target.classList.contains("deleteTask")){
         const task = e.target.closest(".task");
-        clearTimeout(timer)
         tasks.removeChild(task);
         saveTasksToLocalStorage()
     }
@@ -165,38 +175,4 @@ showUnresolvedTasks.addEventListener("click", () => {
             task.classList.remove("filtered")
         }
     })
-})
-
-tasks.addEventListener("click", (e) => {
-    if(e.target.classList.contains("timer")){
-
-        boxForActions.innerHTML = `
-            <input type="number" placeholder="В минутах" id="timeForTimer">
-            <button id="submitTimer">Установить таймер</button>
-            <span id="closeBoxBtn">X</span>
-        `
-
-        const timerInput = boxForActions.querySelector("#timeForTimer");
-        const submitTimer = boxForActions.querySelector("#submitTimer");
-        const closeBoxBtn = boxForActions.querySelector("#closeBoxBtn");
-
-        closeBoxBtn.addEventListener("click", () => {
-            boxForActions.innerHTML = "";
-        })
-
-        submitTimer.addEventListener("click", () => {
-            const minutes = parseInt(timerInput.value);
-            clearTimeout(timer)
-            if(minutes <= 0){
-                alert("Количество минут должно быть положительным!");
-                return;
-            }
-            timer = setTimeout(() => {
-                alert("Время вышло!");
-                timer = null;
-            }, minutes * 60000);
-            timerInput.value = "";
-        })
-    }
-
 })
