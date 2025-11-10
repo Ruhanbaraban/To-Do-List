@@ -106,6 +106,31 @@ body{
     display: none;
 }
 
+#gameBox #tasks .task.timerOn{
+    animation: rotating 2s infinite ease;
+}
+
+@keyframes rotating {
+    0%{
+        transform: rotate(0deg);
+    }
+    1%{
+        transform: rotate(1deg);
+    }
+    25%{
+        transform: rotate(-1deg);
+    }
+    50%{
+        transform: rotate(1deg);
+    }
+    75%{
+        transform: rotate(-1deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
 #gameBox #tasks .task .leftPartOfTask{
     display: flex;
     gap: 15px;
@@ -127,6 +152,13 @@ body{
     width: 30px;
     height: 30px;
 }
+
+#gameBox #tasks .task.resolved .rightPartOfTask .timer{
+    width: 30px;
+    height: 30px;
+    display: none;
+}
+
 
 #gameBox #tasks .task .rightPartOfTask .deleteTask{
     padding: 10px;
@@ -159,6 +191,8 @@ body{
 #gameBox #filters .filter:hover{
     transform: translateY(-5px);
 }
+
+
 
 @media screen and (max-width: 375px) {
     #gameBox #tasks{

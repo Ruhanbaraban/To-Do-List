@@ -7,6 +7,7 @@ const showResolvedTasks = document.getElementById("showResolvedTasks");
 const showUnresolvedTasks = document.getElementById("showUnresolvedTasks");
 
 const url = "https://jsonplaceholder.typicode.com/todos";
+let timer = null;
 
 const savedTasks = localStorage.getItem("tasks");
 if(!savedTasks){
@@ -133,6 +134,8 @@ tasks.addEventListener("change", (e) => {
         const indicator = task.querySelector(".indicator")
         if(indicator.checked){
             task.classList.add("resolved");
+            clearTimeout(timer);
+            task.classList.remove("timerOn")
         } else(
             task.classList.remove("resolved")
         )
@@ -176,3 +179,25 @@ showUnresolvedTasks.addEventListener("click", () => {
         }
     })
 })
+
+tasks.addEventListener("click", (e) => {
+    if(e.target.classList.contains("timer")){
+        clearTimeout(timer)
+        const task = e.target.closest(".task");
+        const response = prompt("Сколько поставить таймер?(в минутах)")
+
+        if(task.querySelector(".indicator").checked){
+            return;
+        }
+
+        if(response === null || isNaN(Number(response)) || Number(response) <= 0){
+            alert("Укажите число!(положительное)")
+            return;
+        }
+        task.classList.add("timerOn")
+        timer = setTimeout(() => {
+            task.classList.remove("timerOn");
+            alert(task.querySelector(".taskValue").innerHTML)
+        }, response * 60000);
+    }
+});
