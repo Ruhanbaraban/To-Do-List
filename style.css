@@ -188,6 +188,10 @@ body{
     transition: .5s;
 }
 
+#gameBox #filters .filter.active{
+    transform: translateY(-5px);
+}
+
 #gameBox #filters .filter:hover{
     transform: translateY(-5px);
 }

@@ -5,6 +5,7 @@ const addTaskButton = document.getElementById("addTaskButton");
 const showAllTasks = document.getElementById("showAllTasks");
 const showResolvedTasks = document.getElementById("showResolvedTasks");
 const showUnresolvedTasks = document.getElementById("showUnresolvedTasks");
+const filters = document.getElementsByClassName("filter")
 
 const url = "https://jsonplaceholder.typicode.com/todos";
 let timer = null;
@@ -16,6 +17,10 @@ if(!savedTasks){
     loadTasksFromLocalStorage()
 }
 
+Array.from(filters).forEach((filter) => {
+    filter.classList.remove("active")
+})
+showAllTasks.classList.add("active");
 
 function saveTasksToLocalStorage(){
     const savedTasks = [];
@@ -151,7 +156,18 @@ tasks.addEventListener("click", (e) => {
     }
 })
 
+function clearFilters(){
+    filters.forEach((filter) => {
+        filter.classList.remove("active")
+    })
+    
+}
+
 showAllTasks.addEventListener("click", () => {
+    Array.from(filters).forEach((filter) => {
+        filter.classList.remove("active")
+    })
+    showAllTasks.classList.add("active");
     tasks.querySelectorAll(".task").forEach((task) => {
         task.classList.remove("filtered");
     })
@@ -159,6 +175,10 @@ showAllTasks.addEventListener("click", () => {
 })
 
 showResolvedTasks.addEventListener("click", () => {
+    Array.from(filters).forEach((filter) => {
+        filter.classList.remove("active")
+    })
+    showResolvedTasks.classList.add("active");
     tasks.querySelectorAll(".task").forEach((task) => {
         const indicator = task.querySelector(".indicator");
         if(!indicator.checked){
@@ -170,6 +190,10 @@ showResolvedTasks.addEventListener("click", () => {
 })
 
 showUnresolvedTasks.addEventListener("click", () => {
+    Array.from(filters).forEach((filter) => {
+        filter.classList.remove("active")
+    })
+    showUnresolvedTasks.classList.add("active");
     tasks.querySelectorAll(".task").forEach((task) => {
         const indicator = task.querySelector(".indicator")
         if(indicator.checked){
