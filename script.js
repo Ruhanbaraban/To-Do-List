@@ -17,9 +17,11 @@ if(!savedTasks){
     loadTasksFromLocalStorage()
 }
 
-Array.from(filters).forEach((filter) => {
-    filter.classList.remove("active")
-})
+function clearFilters(){
+    Array.from(filters).forEach((filter) => {
+        filter.classList.remove("active")
+    })
+}
 showAllTasks.classList.add("active");
 
 function saveTasksToLocalStorage(){
@@ -156,17 +158,8 @@ tasks.addEventListener("click", (e) => {
     }
 })
 
-function clearFilters(){
-    filters.forEach((filter) => {
-        filter.classList.remove("active")
-    })
-    
-}
-
 showAllTasks.addEventListener("click", () => {
-    Array.from(filters).forEach((filter) => {
-        filter.classList.remove("active")
-    })
+    clearFilters();
     showAllTasks.classList.add("active");
     tasks.querySelectorAll(".task").forEach((task) => {
         task.classList.remove("filtered");
@@ -175,9 +168,7 @@ showAllTasks.addEventListener("click", () => {
 })
 
 showResolvedTasks.addEventListener("click", () => {
-    Array.from(filters).forEach((filter) => {
-        filter.classList.remove("active")
-    })
+    clearFilters();
     showResolvedTasks.classList.add("active");
     tasks.querySelectorAll(".task").forEach((task) => {
         const indicator = task.querySelector(".indicator");
@@ -190,9 +181,7 @@ showResolvedTasks.addEventListener("click", () => {
 })
 
 showUnresolvedTasks.addEventListener("click", () => {
-    Array.from(filters).forEach((filter) => {
-        filter.classList.remove("active")
-    })
+    clearFilters();
     showUnresolvedTasks.classList.add("active");
     tasks.querySelectorAll(".task").forEach((task) => {
         const indicator = task.querySelector(".indicator")
